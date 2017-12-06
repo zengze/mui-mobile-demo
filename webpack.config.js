@@ -24,7 +24,7 @@ module.exports = {
     new ExtractTextPlugin({ filename: '[name].css', allChunks: true })
   ],
   entry: {
-    index: './src/entry/Index.jsx',
+    home: './src/entry/Home.jsx',
     hwmodelList: './src/entry/HwmodelList.jsx'
   },
   output: {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import * as Components from '../components';
+import * as Components from '../../components';
 
 export default class Index extends Component {
 
