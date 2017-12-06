@@ -9,6 +9,18 @@ export class NavMenu extends Component {
     };
   }
 
+  componentDidMount() {
+    this._menuClick();
+  }
+
+  //菜单点击事件
+  _menuClick() {
+    mui('.mui-table-view-cell').on('tap', 'li', (e) => {
+      let url = e.target.getAttribute('href');
+      location.href = url;
+    });
+  }
+
   render() {
 
     return (
@@ -35,7 +47,7 @@ export class NavMenu extends Component {
                     配置管理
                   </a>
                   <ul className="mui-table-view">
-                    <li className="mui-table-view-cell">配置列表</li>
+                    <li className="mui-table-view-cell" href="hwmodel-list.html">配置列表</li>
                     <li className="mui-table-view-cell">添加配置</li>
                   </ul>
             		</li>
