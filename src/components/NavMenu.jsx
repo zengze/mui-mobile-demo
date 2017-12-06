@@ -87,7 +87,7 @@ export class NavMenu extends Component {
         </div>
         {/* 主界面部分 */}
         <div className="mui-inner-wrap">
-          <header className="mui-bar mui-bar-nav">
+          <header className="mui-bar mui-bar-nav" style={{ background: '#fff' }}>
             <a href="#offCanvasSide" className="mui-icon mui-action-menu mui-icon-bars mui-pull-left"></a>
             <a className="mui-btn mui-btn-link mui-pull-right">退出</a>
             <h1 className="mui-title">{this.props.title}</h1>
