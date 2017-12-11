@@ -17,7 +17,12 @@ export default class Index extends Component {
   render() {
 
     return (
-      <Components.NavMenu title={'首页'}>
+      <Components.NavMenu>
+        <header className="mui-bar mui-bar-nav" style={{ background: '#fff' }}>
+          <a href="#offCanvasSide" className="mui-icon mui-action-menu mui-icon-bars mui-pull-left"></a>
+          <a className="mui-btn mui-btn-link mui-pull-right">退出</a>
+          <h1 className="mui-title">首页</h1>
+        </header>
         <div id="offCanvasContentScroll" className="mui-content mui-scroll-wrapper">
           <div className="mui-scroll">
             <div className="mui-content-padded">

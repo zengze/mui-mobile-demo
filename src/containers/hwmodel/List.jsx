@@ -49,23 +49,23 @@ export default class List extends Component {
   render() {
 
     return (
-      <Components.NavMenu title={'配置列表'}>
+      <Components.NavMenu>
+        {/* 标题 */}
+        <header className="mui-bar mui-bar-nav" style={{ background: '#fff' }}>
+          <a href="#offCanvasSide" className="mui-icon mui-action-menu mui-icon-bars mui-pull-left"></a>
+          <a className="mui-icon mui-icon-plus mui-pull-right"></a>
+          <h1 className="mui-title">配置列表</h1>
+        </header>
+        {/* 刷新列表 */}
         <div id="pullrefresh" className="mui-content mui-scroll-wrapper">
         	<div className="mui-scroll">
             <div style={{ display: 'flex' }}>
-              {/* <select style={{ marginBottom: 0, flex: 1 }}>
-                <option value="item-1">无</option>
-                <option value="item-2">名称</option>
-                <option value="item-3">内容</option>
-                <option value="item-4">备注</option>
-              </select> */}
               <div className="mui-input-row mui-search" style={{ flex: 1 }}>
     						<input type="text" className="mui-input-clear"/>
     					</div>
   						<button className="mui-btn mui-btn-primary mui-icon mui-icon-search" style={{ width: 80, height: 40 }}> 查询</button>
             </div>
             <ul id='work-list' className="mui-table-view mui-table-view-chevron">
-        			{/* <div className='list-title'>我的工作</div> */}
         			<li className="mui-table-view-cell">
         				<div className="mui-table mui-slider-handle">
       				    <div className="mui-ellipsis">初始化的配置</div>
