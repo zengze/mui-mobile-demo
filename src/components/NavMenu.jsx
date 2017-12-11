@@ -48,7 +48,7 @@ export class NavMenu extends Component {
                   </a>
                   <ul className="mui-table-view">
                     <li className="mui-table-view-cell" href="hwmodel-list.html">配置列表</li>
-                    <li className="mui-table-view-cell">添加配置</li>
+                    <li className="mui-table-view-cell" href="hwmodel-add.html">添加配置</li>
                   </ul>
             		</li>
             		<li className="mui-table-view-cell mui-collapse">

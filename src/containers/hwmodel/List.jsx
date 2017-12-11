@@ -24,6 +24,9 @@ export default class List extends Component {
         }
       }
     });
+    document.getElementById("add").addEventListener('tap', () => {
+      location.href = 'hwmodel-add.html';
+    });
   }
 
   // 下拉刷新
@@ -53,7 +56,7 @@ export default class List extends Component {
         {/* 标题 */}
         <header className="mui-bar mui-bar-nav" style={{ background: '#fff' }}>
           <a href="#offCanvasSide" className="mui-icon mui-action-menu mui-icon-bars mui-pull-left"></a>
-          <a className="mui-icon mui-icon-plus mui-pull-right"></a>
+          <a id="add" className="mui-icon mui-icon-plus mui-pull-right"></a>
           <h1 className="mui-title">配置列表</h1>
         </header>
         {/* 刷新列表 */}
