@@ -41,18 +41,7 @@ export default class List extends Component {
       var table = document.getElementById('work-list');
       var cells = document.body.querySelectorAll('.mui-table-view-cell');
       for (var i = cells.length, len = i + 1; i < len; i++) {
-        var li = document.createElement('li');
-        li.className = 'mui-table-view-cell';
-        li.innerHTML = '<div class="mui-table">'
-                      + '<div class="mui-table-cell mui-col-xs-10">'
-                      + '<div class="mui-ellipsis">巡查崔庄扬水站</div>'
-                      + '<h5>类型：巡检</h5>'
-                      + '<h5>状态：处理中</h5>'
-                      + '<h5>开始时间：2017/11/18</h5>'
-                      + '<h5>截止时间：2017/11/20</h5>'
-                      + '</div>'
-                      + '</div>';
-        table.appendChild(li);
+
       }
     }, 1000);
   }
@@ -62,45 +51,57 @@ export default class List extends Component {
     return (
       <Components.NavMenu title={'配置列表'}>
         <div id="pullrefresh" className="mui-content mui-scroll-wrapper">
-    			<div className="mui-scroll">
-    				<ul id='work-list' className="mui-table-view mui-table-view-chevron">
-    					<div className='list-title'>我的工作</div>
-    					<li className="mui-table-view-cell">
-    						<div className="mui-table">
-    						  <div className="mui-table-cell mui-col-xs-10">
-    						    <div className="mui-ellipsis">维护服务器"A_CentOS6.5_DZ1"</div>
-    						    <h5>类型：维护</h5>
-    						    <h5>状态：未开始</h5>
-    						    <h5>开始时间：2017/11/20</h5>
-    						    <h5>截止时间：2017/11/24</h5>
-    						  </div>
-    						</div>
-    					</li>
-    					<li className="mui-table-view-cell">
-    						<div className="mui-table">
-    						  <div className="mui-table-cell mui-col-xs-10">
-    						    <div className="mui-ellipsis">巡查南李庄扬水站</div>
-    						    <h5>类型：巡检</h5>
-    						    <h5>状态：未开始</h5>
-    						    <h5>开始时间：2017/11/19</h5>
-    						    <h5>截止时间：2017/11/21</h5>
-    						  </div>
-    						</div>
-    					</li>
-    					<li className="mui-table-view-cell">
-    						<div className="mui-table">
-    						  <div className="mui-table-cell mui-col-xs-10">
-    						    <div className="mui-ellipsis">巡查五陵镇扬水站</div>
-    						    <h5>类型：巡检</h5>
-    						    <h5>状态：处理中</h5>
-    						    <h5>开始时间：2017/11/18</h5>
-    						    <h5>截止时间：2017/11/20</h5>
-    						  </div>
-    						</div>
-    					</li>
-    				</ul>
-    			</div>
-    		</div>
+        	<div className="mui-scroll">
+            <div style={{ display: 'flex' }}>
+              {/* <select style={{ marginBottom: 0, flex: 1 }}>
+                <option value="item-1">无</option>
+                <option value="item-2">名称</option>
+                <option value="item-3">内容</option>
+                <option value="item-4">备注</option>
+              </select> */}
+              <div className="mui-input-row mui-search" style={{ flex: 1 }}>
+    						<input type="text" className="mui-input-clear"/>
+    					</div>
+  						<button className="mui-btn mui-btn-primary mui-icon mui-icon-search" style={{ width: 80, height: 40 }}> 查询</button>
+            </div>
+            <ul id='work-list' className="mui-table-view mui-table-view-chevron">
+        			{/* <div className='list-title'>我的工作</div> */}
+        			<li className="mui-table-view-cell">
+        				<div className="mui-table mui-slider-handle">
+      				    <div className="mui-ellipsis">初始化的配置</div>
+      				    <h5>{'内容：' + `{"userType":2}`}</h5>
+      				    <h5>备注：初始化的配置</h5>
+        				</div>
+                <div className="mui-slider-right mui-disabled">
+      						<a className="mui-btn mui-btn-grey mui-icon mui-icon-compose"></a>
+      						<a className="mui-btn mui-btn-red mui-icon mui-icon-trash"></a>
+      					</div>
+        			</li>
+        			<li className="mui-table-view-cell">
+        				<div className="mui-table mui-slider-handle">
+      				    <div className="mui-ellipsis">管理员的配置</div>
+      				    <h5>{'内容：' + `{"userType":1}`}</h5>
+      				    <h5>备注：管理员的配置</h5>
+        				</div>
+                <div className="mui-slider-right mui-disabled">
+      						<a className="mui-btn mui-btn-grey mui-icon mui-icon-compose"></a>
+      						<a className="mui-btn mui-btn-red mui-icon mui-icon-trash"></a>
+      					</div>
+        			</li>
+        			<li className="mui-table-view-cell">
+        				<div className="mui-table mui-slider-handle">
+      				    <div className="mui-ellipsis">用户的配置</div>
+      				    <h5>{'内容：' + `{"userType":0}`}</h5>
+      				    <h5>备注：用户的配置</h5>
+        				</div>
+                <div className="mui-slider-right mui-disabled">
+                  <a className="mui-btn mui-btn-grey mui-icon mui-icon-compose"></a>
+                  <a className="mui-btn mui-btn-red mui-icon mui-icon-trash"></a>
+                </div>
+        			</li>
+        		</ul>
+        	</div>
+        </div>
       </Components.NavMenu>
     );
   }
