@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+const ReactDOMServer = require('react-dom/server');
+import _ from 'lodash';
 
 import * as Components from '../../components';
 
@@ -7,7 +9,26 @@ export default class List extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      data: [
+        {
+          name: '初始化的配置',
+          content: '{"userType":2}',
+          ts: '初始化的配置',
+        },
+        {
+          name: '管理员的配置',
+          content: '{"userType":1}',
+          ts: '管理员的配置',
+        },
+        {
+          name: '用户的配置',
+          content: '{"userType":0}',
+          ts: '用户的配置',
+        },
+      ],
+      listData: [
 
+      ],
     };
   }
 
@@ -38,18 +59,39 @@ export default class List extends Component {
 
   // 上拉加载
   pullupRefresh() {
-    var count = 0;
+    const { data, listData } = this.state;
+    const that = this;
     setTimeout(() => {
-      mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 0)); //参数为true代表没有更多数据了。
-      var table = document.getElementById('work-list');
-      var cells = document.body.querySelectorAll('.mui-table-view-cell');
-      for (var i = cells.length, len = i + 1; i < len; i++) {
-
+      mui('#pullrefresh').pullRefresh().endPullupToRefresh((data.length == listData.length + 1)); //参数为true代表没有更多数据了。
+      for (var i = 0; i < 1; i++) {
+        let list = [...listData];
+        list.push(data[listData.length]);
+        that.setState({
+          listData: list,
+        });
       }
     }, 1000);
   }
 
+  _form(item) {
+    return (
+      <li className="mui-table-view-cell">
+        <div className="mui-table mui-slider-handle">
+          <div className="mui-ellipsis">{item.name}</div>
+          <h5>{'内容：' + item.content}</h5>
+          <h5>{'备注：' + item.ts}</h5>
+        </div>
+        <div className="mui-slider-right mui-disabled">
+          <a className="mui-btn mui-btn-grey mui-icon mui-icon-compose"></a>
+          <a className="mui-btn mui-btn-red mui-icon mui-icon-trash"></a>
+        </div>
+      </li>
+    )
+  }
+
   render() {
+
+    const { listData } = this.state;
 
     return (
       <Components.NavMenu>
@@ -69,39 +111,15 @@ export default class List extends Component {
   						<button className="mui-btn mui-btn-primary mui-icon mui-icon-search" style={{ width: 80, height: 40 }}> 查询</button>
             </div>
             <ul id='work-list' className="mui-table-view mui-table-view-chevron">
-        			<li className="mui-table-view-cell">
-        				<div className="mui-table mui-slider-handle">
-      				    <div className="mui-ellipsis">初始化的配置</div>
-      				    <h5>{'内容：' + `{"userType":2}`}</h5>
-      				    <h5>备注：初始化的配置</h5>
-        				</div>
-                <div className="mui-slider-right mui-disabled">
-      						<a className="mui-btn mui-btn-grey mui-icon mui-icon-compose"></a>
-      						<a className="mui-btn mui-btn-red mui-icon mui-icon-trash"></a>
-      					</div>
-        			</li>
-        			<li className="mui-table-view-cell">
-        				<div className="mui-table mui-slider-handle">
-      				    <div className="mui-ellipsis">管理员的配置</div>
-      				    <h5>{'内容：' + `{"userType":1}`}</h5>
-      				    <h5>备注：管理员的配置</h5>
-        				</div>
-                <div className="mui-slider-right mui-disabled">
-      						<a className="mui-btn mui-btn-grey mui-icon mui-icon-compose"></a>
-      						<a className="mui-btn mui-btn-red mui-icon mui-icon-trash"></a>
-      					</div>
-        			</li>
-        			<li className="mui-table-view-cell">
-        				<div className="mui-table mui-slider-handle">
-      				    <div className="mui-ellipsis">用户的配置</div>
-      				    <h5>{'内容：' + `{"userType":0}`}</h5>
-      				    <h5>备注：用户的配置</h5>
-        				</div>
-                <div className="mui-slider-right mui-disabled">
-                  <a className="mui-btn mui-btn-grey mui-icon mui-icon-compose"></a>
-                  <a className="mui-btn mui-btn-red mui-icon mui-icon-trash"></a>
-                </div>
-        			</li>
+        			{
+                listData.length == 0
+                ?
+                  <div style={{ padding: 10, textAlign: 'center' }}>暂无数据</div>
+                :
+                  _.map(listData, (item) => {
+                    return this._form(item);
+                  })
+              }
         		</ul>
         	</div>
         </div>
