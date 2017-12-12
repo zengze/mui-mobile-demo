@@ -26,7 +26,8 @@ module.exports = {
   entry: {
     home: './src/entry/Home.jsx',
     hwmodelList: './src/entry/HwmodelList.jsx',
-    hwmodelAdd: './src/entry/HwmodelAdd.jsx'
+    hwmodelAdd: './src/entry/HwmodelAdd.jsx',
+    hwmodelModify: './src/entry/HwmodelModify.jsx'
   },
   output: {
     path: path.join(__dirname, '/public/dist'),
