@@ -27,7 +27,21 @@ export default class List extends Component {
         },
       ],
       listData: [
-
+        {
+          name: '初始化的配置',
+          content: '{"userType":2}',
+          ts: '初始化的配置',
+        },
+        {
+          name: '管理员的配置',
+          content: '{"userType":1}',
+          ts: '管理员的配置',
+        },
+        {
+          name: '用户的配置',
+          content: '{"userType":0}',
+          ts: '用户的配置',
+        },
       ],
     };
   }
@@ -45,9 +59,8 @@ export default class List extends Component {
         }
       }
     });
-    document.getElementById("add").addEventListener('tap', () => {
-      location.href = 'hwmodel-add.html';
-    });
+    this._add();
+    this._modify();
   }
 
   // 下拉刷新
@@ -73,7 +86,7 @@ export default class List extends Component {
     }, 1000);
   }
 
-  _form(item) {
+  _form(item, index) {
     return (
       <li className="mui-table-view-cell">
         <div className="mui-table mui-slider-handle">
@@ -82,11 +95,27 @@ export default class List extends Component {
           <h5>{'备注：' + item.ts}</h5>
         </div>
         <div className="mui-slider-right mui-disabled">
-          <a className="mui-btn mui-btn-grey mui-icon mui-icon-compose"></a>
+          <a id={'happy-modify' + index} className="happy-modify mui-btn mui-btn-grey mui-icon mui-icon-compose"></a>
           <a className="mui-btn mui-btn-red mui-icon mui-icon-trash"></a>
         </div>
       </li>
     )
+  }
+
+  _add() {
+    document.getElementById("add").addEventListener('tap', () => {
+      location.href = 'hwmodel-add.html';
+    });
+  }
+
+  _modify() {
+    const { data } = this.state;
+    for(let i = 0; i < data.length; i++) {
+      document.getElementById('happy-modify' + i).addEventListener('tap', () => {
+        let params = '?name=' + data[i].name + '&content=' + data[i].content + '&ts=' + data[i].ts;
+        location.href = 'hwmodel-modify.html' + params;
+      });
+    }
   }
 
   render() {
@@ -116,8 +145,8 @@ export default class List extends Component {
                 ?
                   <div style={{ padding: 10, textAlign: 'center' }}>暂无数据</div>
                 :
-                  _.map(listData, (item) => {
-                    return this._form(item);
+                  _.map(listData, (item, index) => {
+                    return this._form(item, index);
                   })
               }
         		</ul>

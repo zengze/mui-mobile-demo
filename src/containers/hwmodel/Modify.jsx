@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 
 import * as Components from '../../components';
 
@@ -12,10 +13,19 @@ export default class Modify extends Component {
   }
 
   componentDidMount() {
-
+    let params = decodeURI(location.search).split('?')[1];
+    let dataList = params.split('&');
+    let dataPairs = _.map(dataList, (item) => {
+      return item.split('=');
+    })
+    let data = _.fromPairs(dataPairs);
+    this.setState({
+      data: data,
+    })
   }
 
   render() {
+    const { data } = this.state;
 
     return (
       <Components.NavMenu>
@@ -28,12 +38,12 @@ export default class Modify extends Component {
         <div className="mui-content">
     			<div className="mui-content-padded">
     				<h4>名称：</h4>
-            <input type="text" placeholder="请输入名称" />
+            <input type="text" placeholder="请输入名称" value={data && data.name} />
             <h4>内容：</h4>
-            <input type="text" placeholder="请输入内容" />
+            <input type="text" placeholder="请输入内容" value={data && data.content} />
             <h4>备注：</h4>
-            <input type="text" placeholder="请输入备注" />
-            <button className="mui-btn mui-btn-primary">添加</button>
+            <input type="text" placeholder="请输入备注" value={data && data.ts} />
+            <button className="mui-btn mui-btn-primary">保存</button>
     			</div>
     		</div>
       </Components.NavMenu>
