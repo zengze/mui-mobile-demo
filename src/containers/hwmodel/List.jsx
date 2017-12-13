@@ -61,6 +61,13 @@ export default class List extends Component {
     });
     this._add();
     this._modify();
+    mui('.mui-slider-right').on('tap', '.mui-icon-trash', (e) => {
+      mui.confirm('确认删除该条记录？', '提示', ['确认', '取消'], function(e) {
+        if (e.index == 0) {
+					mui.toast('删除失败');
+				}
+			});
+    });
   }
 
   // 下拉刷新
