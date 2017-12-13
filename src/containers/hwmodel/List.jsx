@@ -75,14 +75,14 @@ export default class List extends Component {
     const { data, listData } = this.state;
     const that = this;
     setTimeout(() => {
-      mui('#pullrefresh').pullRefresh().endPullupToRefresh((data.length == listData.length + 1)); //参数为true代表没有更多数据了。
-      for (var i = 0; i < 1; i++) {
-        let list = [...listData];
-        list.push(data[listData.length]);
-        that.setState({
-          listData: list,
-        });
-      }
+      mui('#pullrefresh').pullRefresh().endPullupToRefresh((data.length <= listData.length + 1)); //参数为true代表没有更多数据了。
+      // for (var i = 0; i < 1; i++) {
+      //   let list = [...listData];
+      //   list.push(data[listData.length]);
+      //   that.setState({
+      //     listData: list,
+      //   });
+      // }
     }, 1000);
   }
 
